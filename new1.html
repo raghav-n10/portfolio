@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghav Natarajan - ECE Engineering Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("EvtLzqhKjkU7OKvh7"); // Consider moving this to server-side in production
+        })();
+    </script>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #12eed8;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+            --text: #374151;
+            --section-alt: #f8fafc;
+            --success: #10b981;
+            --error: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9fafb;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .section-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+            text-align: center;
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section with Photo */
+        .hero {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: linear-gradient(120deg, #e0f2fe, #dbeafe);
+            text-align: center;
+        }
+        
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .profile-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hero-content {
+            text-align: left;
+            max-width: 500px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-align: left;
+        }
+        
+        .hero h2::after {
+            margin: 15px 0;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+        
+        /* About Section */
+        .about {
+            background: white;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Education Section */
+        .education {
+            background: var(--section-alt);
+        }
+        
+        .education-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .education-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-top: 5px;
+        }
+        
+        .education-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Skills Section */
+        .skills {
+            background: white;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background: var(--section-alt);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .skill-category ul li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        
+        /* Projects Section */
+        .projects {
+            background: var(--section-alt);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            background: #e0f2fe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-info {
+            padding: 1.8rem;
+        }
+        
+        .project-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .project-info p {
+            color: var(--text);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .project-impact {
+            background: #e0f2fe;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-style: italic;
+            border-left: 4px solid var(--primary);
+        }
+        
+        /* Certifications Section */
+        .certifications {
+            background: white;
+        }
+        
+        .certs-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cert-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--section-alt);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .cert-icon {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+        
+        /* Achievements Section */
+        .achievements {
+            background: var(--section-alt);
+        }
+        
+        .achievements-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .achievements-content ul {
+            list-style: none;
+        }
+        
+        .achievements-content ul li {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .achievements-content ul li::before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Strengths Section */
+        .strengths {
+            background: white;
+        }
+        
+        .strengths-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .strength-item {
+            background: var(--section-alt);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .strength-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(120deg, #e0f2fe, #dbeafe);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info i {
+            color: var(--primary);
+            font-size: 1.4rem;
+            width: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* LeetCode icon fix */
+        .social-links a img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        
+        /* Contact Form Styles */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-form h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .form-message.success {
+            background-color: #ecfdf5;
+            color: var(--success);
+            border: 1px solid #a7f3d0;
+            display: block;
+        }
+        
+        .form-message.error {
+            background-color: #fef2f2;
+            color: var(--error);
+            border: 1px solid #fca5a5;
+            display: block;
+        }
+        
+        /* Declaration Section */
+        .declaration {
+            background: white;
+            padding: 50px 0;
+        }
+        
+        .declaration-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-style: italic;
+            color: var(--text);
+            padding-top: 25px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero h2 {
+                text-align: center;
+            }
+            
+            .profile-photo {
+                width: 220px;
+                height: 220px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .education-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.8rem;
+            }
+            
+            .education-icon {
+                margin: 0 auto 15px;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">RN</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section with Photo -->
+    <section class="hero">
+        <div class="container hero-container">
+            <img src="images/img1.jpg" alt="Raghav Natarajan - Electronics and Communication Engineering Student" class="profile-photo">
+            <div class="hero-content">
+                <h1>Raghav Natarajan</h1>
+                <h2>Electronics & Communication Engineering Student</h2>
+                <p>Seeking opportunities to apply my knowledge in Embedded Systems, VLSI, and IoT to real-world challenges</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <span class="section-icon">🎯</span>
+            <h2>Career Objective</h2>
+            <div class="about-content">
+                <p>To leverage my skills in Embedded Systems, VLSI, and Programming to contribute to innovative solutions in the electronics domain and to continuously enhance my technical expertise.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <span class="section-icon">🎓</span>
+            <h2>Education</h2>
+            <div class="education-item">
+                <div class="education-icon">📚</div>
+                <div>
+                    <h3>B.E. Electronics and Communication Engineering</h3>
+                    <p>Kongu Engineering College | CGPA: 8.5 | 2023–2027</p>
+                </div>
+            </div>
+            <div class="education-item">
+                <div class="education-icon">📚</div>
+                <div>
+                    <h3>Higher Secondary Certification</h3>
+                    <p>Reliance Matric Hr Sec School | Percentage:92.67% | 2023</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <span class="section-icon">💻</span>
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><span>📟</span> Programming</h3>
+                    <ul>
+                        <li>C Programming</li>
+                        <li>Verilog</li>
+                        <li>Assembly</li>
+                        <li>Python</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><span>🔌</span> Domain Knowledge</h3>
+                    <ul>
+                        <li>VLSI</li>
+                        <li>Embedded Systems</li>
+                        <li>IoT</li>
+                        <li>Digital Signal Processing</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><span>🛠️</span> Tools</h3>
+                    <ul>
+                        <li>MATLAB</li>
+                        <li>Proteus</li>
+                        <li>Xilinx</li>
+                        <li>Keil</li>
+                        <li>Arduino IDE</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <span class="section-icon">📂</span>
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--primary); font-size: 3rem;">🚗</div>
+                    </div>
+                    <div class="project-info">
+                        <h3><span>🚗</span> Smart Emergency Response for Car Accidents</h3>
+                        <p>Used accelerometer, GPS, GSM, and Arduino to detect accidents and send real-time alerts with location.</p>
+                        <div class="project-impact">
+                            <strong>Impact:</strong> Helps reduce delay in emergency response.
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--primary); font-size: 3rem;">🚦</div>
+                    </div>
+                    <div class="project-info">
+                        <h3><span>🚦</span> Smart Traffic Management System</h3>
+                        <p>Developed an intelligent dashboard using HTML, CSS, Javascript and AI model using Camera for monitoring and managing traffic.</p>
+                        <div class="project-impact">
+                            <strong>Impact:</strong> Helps optimize traffic flow and reduce congestion.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications">
+        <div class="container">
+            <span class="section-icon">📜</span>
+            <h2>Certifications</h2>
+            <div class="certs-container">
+                <div class="cert-item">
+                    <div class="cert-icon">✅</div>
+                    <div>
+                        <h3>NPTEL Certification in Electrical Measurement and Electronic Instruments</h3>
+                    </div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-icon">✅</div>
+                    <div>
+                        <h3>NPTEL Certification in Basics of Semiconductor Microwave Devices</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements">
+        <div class="container">
+            <span class="section-icon">🏆</span>
+            <h2>Achievements</h2>
+            <div class="achievements-content">
+                <ul>
+                    <li>Secured consistently above 85% in academics.</li>
+                    <li>Actively participated in technical project presentation and hackathons.</li>
+                    <li>Won second prize in college-level paper presentation.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strengths Section -->
+    <section class="strengths">
+        <div class="container">
+            <span class="section-icon">💪</span>
+            <h2>Strengths</h2>
+            <div class="strengths-content">
+                <p>Quick learner, problem-solving mindset, good team collaboration skills, attention to detail, and strong analytical abilities.</p>
+                <div class="strengths-grid">
+                    <div class="strength-item">Quick Learner</div>
+                    <div class="strength-item">Problem Solver</div>
+                    <div class="strength-item">Team Player</div>
+                    <div class="strength-item">Detail Oriented</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <span class="section-icon">📞</span>
+            <h2>Contact Information</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p><i class="fas fa-user"></i> Raghav Natarajan</p>
+                    <p><i class="fas fa-envelope"></i> raghavnatarajan18@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 8807593699</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Erode, Tamil Nadu</p>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/raghav-natarajan-b37a76320/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/raghav-n10" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://leetcode.com/u/raghav_n10/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h3>Send me a message</h3>
+                    <div id="form-message" class="form-message"></div>
+                    <form id="feedback-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comments">Your Message</label>
+                            <textarea id="comments" name="comments" required></textarea>
+                        </div>
+                        <button type="submit" class="btn" id="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Declaration Section -->
+    <section class="declaration">
+        <div class="container">
+            <div class="declaration-content">
+                <p>"I hereby declare that the information provided above is true to the best of my knowledge."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Raghav Natarajan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Sticky header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // EmailJS Form Handling
+        document.getElementById('feedback-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Basic form validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const comments = document.getElementById('comments').value.trim();
+            
+            if (!name || !email || !comments) {
+                const formMessage = document.getElementById('form-message');
+                formMessage.textContent = 'Please fill in all fields.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+                return;
+            }
+            
+            const submitBtn = document.getElementById('submit-btn');
+            const formMessage = document.getElementById('form-message');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            formMessage.style.display = 'none';
+            
+            // Send form data using EmailJS
+            emailjs.sendForm('service_ztweah7', 'template_asz3t0h', this)
+                .then(function() {
+                    // Success message
+                    formMessage.textContent = 'Message sent successfully! I will get back to you soon.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('feedback-form').reset();
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                }, function(error) {
+                    // Error message
+                    formMessage.textContent = 'Sorry, there was an error sending your message. Please try again later.';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                    
+                    console.error('EmailJS error:', error);
+                });
+        });
+    </script>
+</body>
+</html>
