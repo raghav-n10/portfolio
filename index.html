@@ -5,13 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raghav Natarajan - ECE Engineering Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>
-        // Initialize EmailJS
-        (function() {
-            emailjs.init("EvtLzqhKjkU7OKvh7"); // Consider moving this to server-side in production
-        })();
-    </script>
     <style>
         /* Global Styles */
         :root {
@@ -37,6 +30,7 @@
             line-height: 1.6;
             color: var(--text);
             background-color: #f9fafb;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -519,14 +513,6 @@
             transform: translateY(-3px);
         }
         
-        /* LeetCode icon fix */
-        .social-links a img {
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            object-fit: contain;
-        }
-        
         /* Contact Form Styles */
         .contact-form {
             background: white;
@@ -690,7 +676,7 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">Raghav N</div>
+            <div class="logo">RN</div>
             <nav>
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -706,7 +692,7 @@
     <!-- Hero Section with Photo -->
     <section class="hero">
         <div class="container hero-container">
-            <img src="images/img1.jpg" alt="Raghav Natarajan - Electronics and Communication Engineering Student" class="profile-photo">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80" alt="Raghav Natarajan - Electronics and Communication Engineering Student" class="profile-photo">
             <div class="hero-content">
                 <h1>Raghav Natarajan</h1>
                 <h2>Electronics & Communication Engineering Student</h2>
@@ -894,11 +880,17 @@
                     </div>
                 </div>
                 
-                <!-- Contact Form -->
+                <!-- Contact Form with FormSubmit.co -->
                 <div class="contact-form">
                     <h3>Send me a message</h3>
                     <div id="form-message" class="form-message"></div>
-                    <form id="feedback-form">
+                    <form action="https://formsubmit.co/raghavnatarajan18@gmail.com" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New message from your portfolio website!">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                        <input type="hidden" name="_captcha" value="false">
+                        
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" required>
@@ -908,8 +900,8 @@
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="comments">Your Message</label>
-                            <textarea id="comments" name="comments" required></textarea>
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
                         </div>
                         <button type="submit" class="btn" id="submit-btn">Send Message</button>
                     </form>
@@ -962,57 +954,56 @@
             }
         });
         
-        // EmailJS Form Handling
-        document.getElementById('feedback-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Form validation and submission handling
+        const form = document.querySelector('.contact-form form');
+        const formMessage = document.getElementById('form-message');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                // Basic form validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (!name || !email || !message) {
+                    event.preventDefault();
+                    showMessage('Please fill in all fields.', 'error');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    event.preventDefault();
+                    showMessage('Please enter a valid email address.', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                
+                // The form will now submit to FormSubmit.co
+                // FormSubmit will handle the rest and redirect accordingly
+            });
+        }
+        
+        function showMessage(text, type) {
+            formMessage.textContent = text;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
             
-            // Basic form validation
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const comments = document.getElementById('comments').value.trim();
-            
-            if (!name || !email || !comments) {
-                const formMessage = document.getElementById('form-message');
-                formMessage.textContent = 'Please fill in all fields.';
-                formMessage.className = 'form-message error';
-                formMessage.style.display = 'block';
-                return;
+            // Scroll to message
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Check if there's a success message in the URL (redirect from FormSubmit)
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                showMessage('Message sent successfully! I will get back to you soon.', 'success');
             }
-            
-            const submitBtn = document.getElementById('submit-btn');
-            const formMessage = document.getElementById('form-message');
-            
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            formMessage.style.display = 'none';
-            
-            // Send form data using EmailJS
-            emailjs.sendForm('service_ztweah7', 'template_asz3t0h', this)
-                .then(function() {
-                    // Success message
-                    formMessage.textContent = 'Message sent successfully! I will get back to you soon.';
-                    formMessage.className = 'form-message success';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset form
-                    document.getElementById('feedback-form').reset();
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Message';
-                }, function(error) {
-                    // Error message
-                    formMessage.textContent = 'Sorry, there was an error sending your message. Please try again later.';
-                    formMessage.className = 'form-message error';
-                    formMessage.style.display = 'block';
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Send Message';
-                    
-                    console.error('EmailJS error:', error);
-                });
         });
     </script>
 </body>
