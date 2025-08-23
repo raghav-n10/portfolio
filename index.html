@@ -31,6 +31,7 @@
             color: var(--text);
             background-color: #f9fafb;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         .container {
@@ -148,6 +149,68 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 300px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: right 0.3s ease;
+            padding: 80px 30px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav ul {
+            list-style: none;
+        }
+        
+        .mobile-nav ul li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1.2rem;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+        
+        .mobile-nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* Hero Section with Photo */
@@ -698,19 +761,15 @@
         
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                text-align: center;
                 padding: 1rem;
             }
             
             nav ul {
-                margin-top: 1rem;
-                justify-content: center;
-                flex-wrap: wrap;
+                display: none;
             }
             
-            nav ul li {
-                margin: 0.5rem;
+            .mobile-menu {
+                display: block;
             }
             
             .hero {
@@ -745,20 +804,6 @@
         }
 
         @media (max-width: 480px) {
-            .header-container {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 0.8rem 1rem;
-            }
-            
-            nav {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
             .hero h1 {
                 font-size: 2rem;
             }
@@ -777,6 +822,10 @@
             
             .projects-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .mobile-nav {
+                width: 80%;
             }
         }
     </style>
@@ -800,6 +849,20 @@
             </nav>
         </div>
     </header>
+    
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#education" class="mobile-nav-link">Education</a></li>
+            <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+            <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+        </ul>
+    </div>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
 
     <!-- Hero Section with Photo -->
     <section class="hero">
@@ -1058,6 +1121,11 @@
                         behavior: 'smooth'
                     });
                 }
+                
+                // Close mobile menu if open
+                if (mobileNav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
             });
         });
         
@@ -1071,16 +1139,25 @@
             }
         });
         
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navMenu = document.getElementById('nav-menu');
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const mobileNav = document.getElementById('mobile-nav');
+        const overlay = document.getElementById('overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
         
-        if (mobileMenu) {
-            mobileMenu.addEventListener('click', function() {
-                const isVisible = navMenu.style.display === 'block';
-                navMenu.style.display = isVisible ? 'none' : 'block';
-            });
+        function toggleMobileMenu() {
+            mobileNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
         }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close menu when clicking on links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
+        });
         
         // Form validation and submission handling
         const form = document.getElementById('contact-form');
